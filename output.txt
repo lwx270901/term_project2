@@ -55,7 +55,7 @@
 0xb580: PUSH {R7, LR}
 0xb082: SUB SP 2
 0xaf00: ADD R7 SP #0
-0x2301: MOV R3, #1   
+0x2301: MOV R3, #1   // R3 = 1
 0x425b: RSB R3, R3, #0   // R3 = -1
 0x607b: STR R3, [R7, #4] // M[a+4] = -1
 0x2302: MOV R3, #2 // R3 = 2
@@ -63,72 +63,72 @@
 0x687a: LDR R2, [R7, #4] // R2 = -1
 0x683b: LDR R3, [R7, #0] // R3 = 2
 0x18d2: ADD R2, R2, R3 // R2 = 1
-0x4b21: LDR R3, [PC, #132] // R3 = PC + 132
-0x601a: STR R2, [R3, #0] // M[PC + 132] = 1
+0x4b21: LDR R3, [PC, #132] // R3 = M[PC + 132]
+0x601a: STR R2, [R3, #0] // M[M[PC + 132]] = 1
 0x687b: LDR R3, [R7, #4] // R3 = -1
 0x1c9a: ADD R2, R3, #2 // R2 = 1
-0x4b20: LDR R3, [PC, #128] // R3 = PC + 128
-0x601a: STR R2, [R3, #0] // M[PC + 128] = 1
+0x4b20: LDR R3, [PC, #128] // R3 = M[PC + 128]
+0x601a: STR R2, [R3, #0] // M[M[PC + 128]] = 1
 0x687a: LDR R2, [R7, #4] //R2 = M[a + 4] = -1
 0x683b: LDR R3, [R7, #0] // R3 = M[a] = 2
 0x1ad2: SUB R2, R2, R3 // R2 = -3
 0x4b1e: LDR R3, [PC, #120] // R3 = M[PC + 120]
-0x601a: STR R2, [R3, #0] // M[PC + 120] = -3
+0x601a: STR R2, [R3, #0] // M[M[PC + 120]] = -3
 0x687b: LDR R3, [R7, #4] // R3 = M[a+4] = -1
 0x1e9a: SUB R2, R3, #2 // R2 = -3
-0x4b1d: LDR R3, [PC, #116] // R3 = M[PC+136]
-0x601a: STR R2, [R3, #0] // M[PC+136] = -3
+0x4b1d: LDR R3, [PC, #116] // R3 = M[PC+116]
+0x601a: STR R2, [R3, #0] // M[M[PC+136]] = -3
 0x687b: LDR R3, [R7, #4] // R3 = M[a + 4] = -1
 0x683a: LDR R2, [R7, #0] // R2 = M[a] = 2
 0x435a: MUL R2, R3 // R2 = -2
 0x4b1c: LDR R3, [PC, #112] // R3 = M[pc + 112]
-0x601a: STR R2, [R3, #0] // M[pc+112] = R2 = -2
+0x601a: STR R2, [R3, #0] // M[M[pc+112]] = R2 = -2
 0x687b: LDR R3, [R7, #4] // R3 =M[a+4] = -1
 0x109a: ASR R2, R3, #2 // R2 = -1
 0x4b1b: LDR R3, [PC, #108] // R3 = M[PC + 108]
-0x601a: STR R2, [R3, #0] // M[PC + 108] = R2 = -1
+0x601a: STR R2, [R3, #0] // M[M[PC + 108]] = R2 = -1
 0x687a: LDR R2, [R7, #4] // R2 = M[a+4] = -1
-0x683b: LDR R3, [R7, #0] // R3 = M[a] = -2
+0x683b: LDR R3, [R7, #0] // R3 = M[a] = 2
 0x411a: ASR R2, R3 // R2 = -1
 0x4b19: LDR R3, [PC, #100] // R3 = M[PC + 100] 
-0x601a: STR R2, [R3, #0] // M[PC+100] = -1
-0x687a: LDR R2, [R7, #4]
-0x683b: LDR R3, [R7, #0]
-0x409a: LSL R2, R3
-0x4b18: LDR R3, [PC, #96]
-0x601a: STR R2, [R3, #0]
-0x687b: LDR R3, [R7, #4]
-0x009a: LSL R2, R3, #2
-0x4b17: LDR R3, [PC, #92]
-0x601a: STR R2, [R3, #0]
-0x687b: LDR R3, [R7, #4]
-0x683a: LDR R2, [R7, #0]
-0x401a: AND R2, R3
-0x4b15: LDR R3, [PC, #84]
-0x601a: STR R2, [R3, #0]
-0x687a: LDR R2, [R7, #4]
-0x683b: LDR R3, [R7, #0]
-0x405a: EOR R2, R3
-0x4b14: LDR R3, [PC, #80]
-0x601a: STR R2, [R3, #0]
-0x687a: LDR R2, [R7, #4]
-0x683b: LDR R3, [R7, #0]
-0x431a: ORR R2, R3
-0x4b12: LDR R3, [PC, #72]
-0x601a: STR R2, [R3, #0]
-0x683b: LDR R3, [R7, #0]
-0x43da: MVN R2, R3
-0x4b11: LDR R3, [PC, #68]
-0x601a: STR R2, [R3, #0]
-0x687b: LDR R3, [R7, #4]
-0x425a: RSB R2, R3, #0
-0x4b10: LDR R3, [PC, #64]
-0x601a: STR R2, [R3, #0]
-0x2300: MOV R3, #0
-0x0018: LSL R0, R3, #0
+0x601a: STR R2, [R3, #0] // M[M[PC+100]] = -1
+0x687a: LDR R2, [R7, #4] // R2 = M[a + 4] = -1
+0x683b: LDR R3, [R7, #0] // R3 = M[a] = 2
+0x409a: LSL R2, R3 // R2 = -4
+0x4b18: LDR R3, [PC, #96] // R3 = M[96 + PC]
+0x601a: STR R2, [R3, #0]  //M[ M[96+PC]] = R2
+0x687b: LDR R3, [R7, #4] // R3 = M[a+4] = -1
+0x009a: LSL R2, R3, #2 // R2 = -4
+0x4b17: LDR R3, [PC, #92] // R3 = M[PC +92]
+0x601a: STR R2, [R3, #0] // M[M[PC + 92]] = -4
+0x687b: LDR R3, [R7, #4] // R3 = M[a+4] = -1
+0x683a: LDR R2, [R7, #0] // R2 = M[a] = 2
+0x401a: AND R2, R3 // R2 = 2
+0x4b15: LDR R3, [PC, #84] // R3 = M[PC+84]
+0x601a: STR R2, [R3, #0] // M[M[PC+84]]  = R2
+0x687a: LDR R2, [R7, #4] // R2 = M[a+4] = -1
+0x683b: LDR R3, [R7, #0] // R3 = M[a] = 2
+0x405a: EOR R2, R3 // R2 = -3
+0x4b14: LDR R3, [PC, #80] // R3 = M[PC+80]
+0x601a: STR R2, [R3, #0] // M[M[PC+80]] = -3
+0x687a: LDR R2, [R7, #4] // R2 = M[a+4] = -1
+0x683b: LDR R3, [R7, #0] // R3 = M[a] = 2
+0x431a: ORR R2, R3 // R2 = -1
+0x4b12: LDR R3, [PC, #72] // R3 = M[PC+72]
+0x601a: STR R2, [R3, #0] // M[M[PC+72]] = -1
+0x683b: LDR R3, [R7, #0] // R3 = M[a] = 2
+0x43da: MVN R2, R3 // R2 = -3
+0x4b11: LDR R3, [PC, #68] // R3 = M[PC + 68]
+0x601a: STR R2, [R3, #0] // M[M[PC + 68]] = -3
+0x687b: LDR R3, [R7, #4] //R3 = M[a+4] = -1
+0x425a: RSB R2, R3, #0 // R2 = 1
+0x4b10: LDR R3, [PC, #64] // R3 = M[PC + 62]
+0x601a: STR R2, [R3, #0]  // M[M[PC+62]] = 1
+0x2300: MOV R3, #0 // R3 = 0
+0x0018: LSL R0, R3, #0 // R0 = 0
 0x46bd: MOV R13, R7
-0xb002: ADD SP SP #2
-0xbd80: POP {R7, PC}
+0xb002: ADD SP SP #2 
+0xbd80: POP {R7, PC} 
 0x46c0: MOV R8, R8
 0x0210: LSL R0, R2, #8
 0x0000: LSL R0, R0, #0

@@ -1600,6 +1600,7 @@ module Decoder(
         dmem_wr_en_o = `MEM_WE_READ;
         dmem_be_o = `MEM_BE_WORD;
         dmem_signed_o = 1'b0;
+        
 
       end
 
