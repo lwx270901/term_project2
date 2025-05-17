@@ -82,6 +82,12 @@ module TB ();
 		.DO2 (DIN)
 	);
 
+	always @ (posedge CLK) begin
+		if (DWE && DREQ==1'b1)
+    		$display("%t  STORE  @%h  = %h", $time, DADDR, DOUT); 
+	end
+
+
 	always @* begin
 		casex( {DSIZE, DADDR[1:0]} )
 			{2'b00, 2'b00}	:	DBE = 4'b0001;
@@ -97,15 +103,19 @@ module TB ();
 	// --------------------------------------------
 	// for ALU_TEST (can be ignored)
 	// --------------------------------------------
+	// Rping data when store
 
 		if (ALU_CLK == 16'd9500) begin
 			$readmemh("ALU_test_data.hex", ALU_TEST_MEM);
 		end
 		if (ALU_CLK == 16'd9550) begin
-			$display("\n--- ALU_TEST_MEM DUMP @ cycle %0d ---", ALU_CLK);
-			for (integer i = 0; i <= 145; i = i + 1) begin
-				$display("  [%0d] = 0x%08h", i, ALU_TEST_MEM[i]);
+			if (ALU_CLK == 16'd9550) begin
+				$display("\n--- ALU_TEST_MEM DUMP @ cycle %0d ---", ALU_CLK);
+				for (integer i = 0; i <= 145; i = i + 1) begin
+					$display("  [%0d] = %0d", i, ALU_TEST_MEM[i]);
+				end
 			end
+			
 
 
 			if (ALU_TEST_MEM[132] == 32'h0000_0001)
@@ -174,9 +184,9 @@ module TB ();
 				$display("NOT_test failed");
 
 			if (ALU_TEST_MEM[145] == 32'h0000_0001)
-				$display("NOT_test passed");
+				$display("RSB_test passed");
 			else
-				$display("NOT_test failed");
+				$display("RSB_test failed");
 		end
 	// --------------------------------------------
 	end
